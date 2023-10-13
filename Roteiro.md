@@ -55,6 +55,9 @@ $$
 |||||
 | Cisco | R1 | e1/0 | 2001:cafe:db:1::1/64 |
 | Cisco | R2 | e1/0 | 2001:cafe:db:1::2/64 |
+|||||
+| (Túnel) | R1 | -> | 192.168.10.25/30 |
+| (Túnel) | R1 | <- | 192.168.10.26/30 |
 
 
 # Comandos
@@ -84,11 +87,15 @@ ipv6 address 2001:cafe:db:1::1/64
 no shutdown
 exit
 
+interface tunnel 1
+ip address 192.168.10.25 255.255.255.252
+tunnel mode ipv6
+tunnel source e1/0
+tunnel destination 2001:cafe:db:1::2
+
 exit
 wr
 ```
-
-- **TODO:** Túnel!
 
 ## Roteador R2
 ```bash
@@ -111,11 +118,15 @@ ipv6 address 2001:cafe:db:1::2/64
 no shutdown
 exit
 
+interface tunnel 1
+ip address 192.168.10.26 255.255.255.252
+tunnel mode ipv6
+tunnel source e1/0
+tunnel destination 2001:cafe:db:1::1
+
 exit
 wr
 ```
-
-- **TODO:** Túnel!
 
 ## Roteador R3
 ```bash
