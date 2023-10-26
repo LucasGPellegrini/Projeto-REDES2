@@ -1,4 +1,0 @@
-Start QEMU with /usr/bin/qemu-system-x86_64 -name R6 -m 256M -smp cpus=1,sockets=1 -enable-kvm -machine smm=off -boot order=c -drive file=/home/lucas/GNS3/projects/projeto_pt1/project-files/qemu/8ab27067-17e9-4bc5-bd0e-a95f03a6ee5d/hda_disk.qcow2,if=ide,index=0,media=disk,id=drive0 -uuid 8ab27067-17e9-4bc5-bd0e-a95f03a6ee5d -serial telnet:127.0.0.1:5001,server,nowait -monitor tcp:127.0.0.1:33769,server,nowait -net none -device e1000,mac=0c:b2:70:67:00:00,netdev=gns3-0 -netdev socket,id=gns3-0,udp=127.0.0.1:10041,localaddr=127.0.0.1:10040 -display none
-
-Execution log:
-qemu-system-x86_64: terminating on signal 15 from pid 2522 (/usr/bin/python)

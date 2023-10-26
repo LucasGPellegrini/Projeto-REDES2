@@ -59,6 +59,14 @@ $$
 | (Túnel) | R1 | -> | 192.168.10.25/30 |
 | (Túnel) | R1 | <- | 192.168.10.26/30 |
 
+## Tabela da VLAN
+| Dispositivo | Switch | Porta | Endereço | Rede | VLAN |
+| :--: | :--: | :--: | :--: | :--: | :--: |
+| Gateway |  |  | 192.168.21.1 | 192.168.21.0/29 | VLAN |
+| PC1 | Taylor-Switch | e0 | 192.168.21.2/29 | 192.168.21.0/29 | VLAN |
+| PC2 | Taylor-Switch | e1 | 192.168.21.3/29 | 192.168.21.0/29 | VLAN |
+| PC3 | Taylor-Switch | e2 | 192.168.21.4/29 | 192.168.21.0/29 | VLAN |
+| R4 | Taylor-Switch | e3 | 192.168.21.5/29 | 192.168.21.0/29 | - |
 
 # Comandos
 ## Roteador R1
@@ -181,4 +189,30 @@ ip address add address=192.168.10.22/30 interface=ether1
 admin
 
 ip address add address=192.168.10.2/30 interface=ether1
+```
+
+## PC 1
+```bash
+ip 192.168.21.2/29 192.168.21.1
+
+show ip
+```
+
+## PC 2
+```bash
+ip 192.168.21.3/29 192.168.21.1
+
+show ip
+```
+
+## PC 3
+```bash
+ip 192.168.21.4/29 192.168.21.1
+
+show ip
+```
+
+## Taylor-Switch
+```bash
+
 ```
