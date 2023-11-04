@@ -317,3 +317,28 @@ admin
 routing ospf area add name=area1 area-id=0.0.0.1
 routing ospf network add  network=192.168.10.20/30 area=area1
 ```
+
+
+# Configuração SSH
+## Roteador R3
+```bash
+configure terminal
+
+hostname R3
+ip domain-name DOMINOS
+crypto key generate rsa
+768 # tamanho (chave)
+ip ssh version 2
+line vty 0 4
+transport input ssh
+login local
+exit
+
+username ademiro password 1234
+
+end
+wr
+```
+
+## Acesso:
+<img src="./img/execssh.png"/>
