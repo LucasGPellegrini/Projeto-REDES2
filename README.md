@@ -101,7 +101,7 @@ tunnel mode ipv6
 tunnel source e1/0
 tunnel destination 2001:cafe:db:1::2
 
-exit
+end
 wr
 ```
 
@@ -132,7 +132,7 @@ tunnel mode ipv6
 tunnel source e1/0
 tunnel destination 2001:cafe:db:1::1
 
-exit
+end
 wr
 ```
 
@@ -155,7 +155,7 @@ ip address 192.168.10.17 255.255.255.252
 no shutdown
 exit
 
-exit
+end
 wr
 ```
 
@@ -173,7 +173,11 @@ ip address 192.168.10.14 255.255.255.252
 no shutdown
 exit
 
-exit
+interface f0/0
+ip address 192.168.21.5 255.255.255.248
+no shutdown
+
+end
 wr
 ```
 
@@ -231,4 +235,85 @@ switchport access vlan 10
 
 end
 wr
+```
+
+
+# Configuração OSPF
+## Roteador R1
+```bash
+configure terminal
+
+router ospf 1
+network 192.168.10.8 0.0.0.3 area 0
+network 198.168.10.0 0.0.0.3 area 1
+network 192.168.10.4 0.0.0.3 area 0
+network 192.168.10.24 0.0.0.3 area 1 # tunel
+exit
+
+ipv6 router ospf 1
+interface e1/0
+ipv6 ospf 1 area 1
+
+end
+wr
+```
+
+## Roteador R2
+```bash
+configure terminal
+
+router ospf 1
+network 192.168.10.16 0.0.0.3 area 0
+network 192.168.10.20 0.0.0.3 area 1
+network 192.168.10.24 0.0.0.3 area 1 # tunel
+exit
+
+ipv6 router ospf 1
+interface e1/0
+ipv6 ospf 1 area 1
+
+end
+wr
+```
+
+## Roteador R3
+```bash
+configure terminal
+
+router ospf 1
+network 192.168.10.8 0.0.0.3 area 0
+network 192.168.10.16 0.0.0.3 area 0
+network 192.168.10.12 0.0.0.3 area 2
+
+end
+wr
+```
+
+## Roteador R4
+```bash
+configure terminal
+
+router ospf 1
+network 192.168.10.12 0.0.0.3 area 2
+network 192.168.21.0 0.0.0.7 area 2
+network 192.168.10.4 0.0.0.3 area 0
+
+end
+wr
+```
+
+## Roteador R5
+```bash
+admin
+
+routing ospf area add name=area1 area-id=0.0.0.1
+routing ospf network add network=192.168.10.0/30 area=area1
+```
+
+## Roteador R6
+```bash
+admin
+
+routing ospf area add name=area1 area-id=0.0.0.1
+routing ospf network add  network=192.168.10.20/30 area=area1
 ```
