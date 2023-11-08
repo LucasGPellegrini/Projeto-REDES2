@@ -62,7 +62,7 @@ $$
 ## Tabela da VLAN
 | Dispositivo | Switch | Porta | Endereço | Rede | VLAN |
 | :--: | :--: | :--: | :--: | :--: | :--: |
-| Gateway |  |  | 192.168.21.1 | 192.168.21.0/29 | VLAN |
+| Gateway |  |  | 192.168.21.5 | 192.168.21.0/29 | VLAN |
 | PC1 | Taylor-Switch | f0/0 | 192.168.21.2/29 | 192.168.21.0/29 | VLAN |
 | PC2 | Taylor-Switch | f0/1 | 192.168.21.3/29 | 192.168.21.0/29 | VLAN |
 | PC3 | Taylor-Switch | f1/0 | 192.168.21.4/29 | 192.168.21.0/29 | - |
@@ -197,21 +197,21 @@ ip address add address=192.168.10.2/30 interface=ether1
 
 ## PC 1
 ```bash
-ip 192.168.21.2/29 192.168.21.1
+ip 192.168.21.2/29 192.168.21.5
 show ip
 wr
 ```
 
 ## PC 2
 ```bash
-ip 192.168.21.3/29 192.168.21.1
+ip 192.168.21.3/29 192.168.21.5
 show ip
 wr
 ```
 
 ## PC 3
 ```bash
-ip 192.168.21.4/29 192.168.21.1
+ip 192.168.21.4/29 192.168.21.5
 show ip
 wr
 ```
